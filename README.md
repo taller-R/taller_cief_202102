@@ -44,7 +44,7 @@
 
    + Operaciones geométricas
    
-   + Librería ``osmdata``, ``geobr``
+   + Librería ``osmdata``, ``geobr``, ``spData``
    
    + Aplicación: Precio de viviendas
 
