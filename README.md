@@ -4,6 +4,10 @@
 
 # Acerca de este repositorio
 
+Antes de replicar las clases debe instalar y configurar R y Git en su equipo. Ver [aquí](https://lectures-blog.gitlab.io/R-initial-setup/) cómo hacerlo.
+
+## Acerca de las clases
+
 * ***Clase-01:*** Introducción a R 
   
   + ¿Usar R?
