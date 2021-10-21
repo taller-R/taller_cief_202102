@@ -8,7 +8,7 @@ Antes de replicar las clases debe instalar y configurar R y Git en su equipo. Ve
 
 ## Acerca de las clases
 
-* ***Clase-01:*** Introducción a R 
+* ***Clase-01:*** Introducción a R [[Ver presentación](https://lectures-blog.gitlab.io/cief_01/)] - [[Ver vídeo]()]
   
   + ¿Usar R?
   
