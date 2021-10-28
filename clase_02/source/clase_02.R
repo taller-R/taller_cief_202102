@@ -37,9 +37,9 @@ rm() # remover un objeto del espacio de trabajo
 rm(list=ls()) # Limpiar el entorno de trabajo
 cat("\f") # Limpiar la consola
 
-#==============#
+#========================#
 # 2. Vectores y matrices #
-#==============#
+#========================#
 cat("Los vectores y las matrices son objetos **homogéneos**. Es decir, 
     todos los elementos de estos objeto deben ser del mismo tipo (númerico o carácter o lógico). 
     Sim embargo, mientras los vectores son de **una dimensión** 
@@ -62,8 +62,8 @@ is(TRUE) ; is.na(NA)
 
 #### Asignar valores
 x <- c(1 , 2 , 3 , 4 , 5)
-assign("x", c(1 , 2 , 3 , 4 , 5))
 c(1 , 2 , 3 , 4 , 5) -> x
+assign("x", c(1 , 2 , 3 , 4 , 5))
 y = c(0, x , 6) # Concatenar vectores
 
 
@@ -95,6 +95,12 @@ x3
 | : o
 ! : Negación"
 
+a = 1:5
+a
+x = c(0,2:5)
+a==x
+c = a==x
+
 #----------------------#
 ## Vectores lógicos (cont.)
 logi = c(TRUE,NA,FALSE,NULL)
@@ -114,7 +120,7 @@ is.na(x)
 ## Vector de caracteres
 
 # Puede usarse " o ' para escribir una cadena de caracteres en R:
-x = c("Hola-","Mundo-","10-")
+x = c("Hola-","Mundo-",10)
 x
 
 # Pueden concatenarse cadenas de caracteres usando la función paste() o paste0()
@@ -126,12 +132,15 @@ y
 ## Manipulación de vectores
 
 # Usando operadores lógicos o aritmeticos
-
 x = c(NA,1,2,3,4,5,NA)
+
 y = x[!is.na(x)] # Diferentes de NA
 y
+x[c(FALSE,TRUE,TRUE,TRUE,TRUE,T,F)]
+
 v = x[x>3] # Mayores a 3 (Ojo con los NA)
 v
+
 z = x[x %in% 1:3] # Contenidos en 1 a 3
 z
 
@@ -140,8 +149,8 @@ z
 ## Manipulación de vectores (cont.)
 
 # Usando la posición de los elementos 
-
 x = c("hola","mundo","de nuevo")
+x
 y = x[1] # maneter elemento de la posición 1
 y
 v = x[2:3] # maneter elementos de la posición 2 a la 3
@@ -163,13 +172,12 @@ object.size(x) # tamaño
 ## Matrices
 
 #### Hacer una matriz numerica
-x = matrix(data = 1:9 , nrow=3 , ncol=3)
+x = matrix(data = 1:120 , nrow=10 , ncol=1)
 x
 
 #### Hacer una matriz de caracteres
 y = matrix(data = c("hola","mundo") , nrow=2 , ncol=2)
 y
-
 
 #----------------------#
 ## Manipular matrices
@@ -207,7 +215,6 @@ num = seq(1,26,1)
 logi = rep(NA,26)
 df = data.frame(caracter = char , numerico = num , logico = logi)
 df
-
 
 #----------------------#
 ## Importar dataframe
@@ -256,6 +263,7 @@ head(df)
 ## as_tibble() vs as.data.frame()
 
 cat("Los objetos tbl son más eficientes en terminos computacionales")
+class(df)
 tb = as_tibble(df)
 class(tb)
 tb
@@ -272,7 +280,8 @@ cat("Las listas son objetos **heterogéneos** de **una dimensión**.
 #----------------------#
 ## Generar lista
 lista = list("tibble_1"=tb[1:5,],
-"tibble_2"=tb[6:10,]) # Asignar nombre a cada posición dentro de la lista
+             "tibble_2"=tb[6:10,]) # Asignar nombre a cada posición dentro de la lista
+
 lista[[3]] = tb[11:nrow(tb),] # Almacenar en la tercera posición
 lista
 
@@ -314,15 +323,16 @@ lista[[1]][,"vehiculo"] # dentro del objeto
 
 # Subset elmentos:
 lista[["tibble_1"]] # Usando el nombre del elemento
+lista$tibble_2
 
 
 #----------------------#
 ## Manipular una lista (cont.)
 
 # Apilar los elementos de una lista:
-tbl = rbindlist(l = lista , use.names = T)
-head(tbl)
-class(tbl)
+db = rbindlist(l = lista , use.names = T)
+head(db)
+class(db)
 
 #----------------------#
 ## Para seguir leyendo
