@@ -12,22 +12,28 @@ Antes de replicar las clases debe instalar y configurar R y Git en su equipo. Ve
   
   + ¿Usar R?
   
-  + Entorno de trabajo de R 
+  + Configuración inicial
   
-  + Rstudio
+  + Introducción al entorno R
   
-  + GitHub 
-
-* ***Clase-02:*** Estructuras de datos en R
-
-  + Librerías
-
-  + Vectores, Matrices, Dataframes, Listas
+  + Líberias
   
-  + Importar y exportar bases de datos (librería ``rio``)
+  + Directorio de trabajo
+
+* ***Clase-02:*** Estructuras de datos en R [[Ver presentación](https://lectures-blog.gitlab.io/cief_02/)] - [[Ver vídeo]()]
+
+  + R + Git
+  
+  + Workspace
+
+  + Vectores y matrices 
+  
+  + Dataframes y listas
 
 * ***Clase-03:*** Data tidying (librería ``tidyverse``)
 
+  + Importar y exportar bases de datos (librería ``rio``)
+  
 * ***Clase-04:*** Visualización de información (librería ggplot2)
 
 * ***Clase-05:*** Loops y funciones
