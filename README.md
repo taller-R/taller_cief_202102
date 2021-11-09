@@ -8,7 +8,7 @@ Antes de replicar las clases debe instalar y configurar R y Git en su equipo. Ve
 
 ## Acerca de las clases
 
-* ***Clase-01:*** Introducción a R [[Ver presentación](https://lectures-blog.gitlab.io/cief_01/)] - [[Ver vídeo]()]
+* ***Clase-01:*** Introducción a R [[Ver presentación](https://lectures-blog.gitlab.io/cief_01/)] - [[Ver vídeo](https://eafit-my.sharepoint.com/:v:/g/personal/cplealv_eafit_edu_co/EZ39c9WuHxFBrzMSPHxz2n8BVCkIHkooZODtmlUcrzIYOQ)]
   
   + ¿Usar R?
   
@@ -20,7 +20,7 @@ Antes de replicar las clases debe instalar y configurar R y Git en su equipo. Ve
   
   + Directorio de trabajo
 
-* ***Clase-02:*** Estructuras de datos en R [[Ver presentación](https://lectures-blog.gitlab.io/cief_02/)] - [[Ver vídeo]()]
+* ***Clase-02:*** Estructuras de datos en R [[Ver presentación](https://lectures-blog.gitlab.io/cief_02/)] - [[Ver vídeo](https://eafit.sharepoint.com/sites/CursoR-CIEF/Documentos%20compartidos/General/Recordings/Clase%2002-20211028_080849-Grabaci%C3%B3n%20de%20la%20reuni%C3%B3n.mp4?web=1)]
 
   + R + Git
   
@@ -30,10 +30,20 @@ Antes de replicar las clases debe instalar y configurar R y Git en su equipo. Ve
   
   + Dataframes y listas
 
-* ***Clase-03:*** Data tidying (librería ``tidyverse``)
+* ***Clase-03:*** Data tidying (librería ``tidyverse``) [[Ver presentación](https://lectures-blog.gitlab.io/cief_03/)] - [[Ver vídeo]()]
 
-  + Importar y exportar bases de datos (librería ``rio``)
-  
+  + Importar/exportar
+
+  + Pipe (`%>%`)
+
+  + Agregar variables
+
+  + Remover filas y/o columnas
+
+  + Combinar conjuntos de datos
+
+  + Pivotear conjuntos de datos
+
 * ***Clase-04:*** Visualización de información (librería ggplot2)
 
 * ***Clase-05:*** Loops y funciones

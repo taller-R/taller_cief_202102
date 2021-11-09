@@ -9,19 +9,19 @@ Sys.setlocale("LC_CTYPE", "en_US.UTF-8") # Encoding UTF-8
 # install/load packages
 install.packages("pacman")
 require(pacman)
-p_load(dplyr,tidyr,tibble,datasets,data.table)
+p_load(dplyr,tidyr,tibble,data.table)
 
 ## Hoy veremos
 
-### **1.** R + Git
+### 1. R + Git
 
-### **2.** Workspace
+### 2. Workspace
 
-### **3.** Vectores y matrices
+### 3. Vectores y matrices
 
-### **4.** Dataframe
+### 4. Dataframe
 
-### **5.** Listas
+### 5. Listas
 
 
 #==============#
@@ -40,10 +40,10 @@ cat("\f") # Limpiar la consola
 #========================#
 # 2. Vectores y matrices #
 #========================#
-cat("Los vectores y las matrices son objetos **homogéneos**. Es decir, 
+cat("Los vectores y las matrices son objetos homogéneos. Es decir, 
     todos los elementos de estos objeto deben ser del mismo tipo (númerico o carácter o lógico). 
-    Sim embargo, mientras los vectores son de **una dimensión** 
-    las matrices tienen **dos dimensiones** (filas y columnas).")
+    Sim embargo, mientras los vectores son de una dimensión 
+    las matrices tienen dos dimensiones (filas y columnas).")
 
 #----------------------#
 ## Tipos de datos
@@ -204,7 +204,7 @@ str(x) # tipo de dato
 # [4.] Dataframe #
 #================#
   
-cat("Los dataframes son objetos **heterogéneos** de **dos dimensiones**. 
+cat("Los dataframes son objetos heterogéneos de dos dimensiones. 
     Es decir, puede almacener elementos de diferentes tipos (númericos, carácteres y lógicos al mismo tiempo) 
     y tiene dos dimensiones (filas y columnas).")
 
@@ -273,7 +273,7 @@ tb
 # [5.] Listas #
 #=============#
 
-cat("Las listas son objetos **heterogéneos** de **una dimensión**. 
+cat("Las listas son objetos heterogéneos de una dimensión. 
     Es decir, en una lista se puede almacener diferentes tipos de objetos (vectores, matricez, dataframes y listas) 
     pero al igual que los vectores tienen solo una dimensión (fila o columna).")
 
