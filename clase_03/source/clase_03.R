@@ -105,14 +105,14 @@ Esta función utiliza los mismos argumentos para diferentes formatos.
 data_csv = import(file="clase_03/input/censo 2018.csv" , skip=6 , encoding="UTF-8") 
 
 #### Importar desde un formato .xls
-data_xls = import(file="clase_03/input/hurto-personas-2020_0.xlsx" , skip=9)
+data_xls = import(file="clase_03/input/hurto-personas-2020_0.xlsx" , sheet="Sheet1" , skip=9)
 
 
 #------------------------------#
 ## EJ: Exportar
 
 #### Exportar a un formato .csv 
-export(x=data_csv, file="clase_03/output/data_csv.csv")
+export(x=data_csv, file="clase_03/output/data_csv.csv" , sep="|")
 
 #### Exportar a un formato .xls 
 export(x=data_xls , file="clase_03/output/data_excel.xlsx")
@@ -126,16 +126,18 @@ export(x=data_xls , file="clase_03/output/data_r.rds")
 cat("`convert()`, combinación de las funciones `import()` y `export()`. cambia la extensión de un archivo sin la necesidad de crear un objeto en R")
 
 #### convertir .csv  ->  .xlsx
-convert(in_file = "clase_03/input/Febrero - Cabecera - Características generales (Personas).csv" , out_file="clase_03/output/Febrero - Cabecera - Características generales (Personas).xls")
+convert(in_file = "clase_03/input/Febrero - Cabecera - Características generales (Personas).csv" , 
+        out_file="clase_03/output/Febrero - Cabecera - Características generales (Personas).xlsx")
 
 #### convertir .xlsx  ->  .rds
-convert(in_file="clase_03/input/Febrero - Cabecera - Características generales (Personas).csv" , out_file="clase_03/output/Febrero - Cabecera - Características generales (Personas).rds")
+convert(in_file="clase_03/input/Febrero - Cabecera - Características generales (Personas).csv" , 
+        out_file="clase_03/output/Febrero - Cabecera - Características generales (Personas).rds")
 
 
 #===================#
 # Generar variables # 
 #===================#
-rm(list=ls())
+rm(list=ls()) # limpiar el entorno
 cat("dos caminos para agregar variables a un dataframe:")
 
 
@@ -150,7 +152,7 @@ df = df[,c(1,4,6,10)] # mantener solo las columnas 1,4,6 y 10
 
 
 cat("Agregar una variable con la relación caballos de fuerza / peso del vehículo")
-df$hp_vs = df$hp/df$wt # agregar nueva variable
+df$hp_vt = df$hp/df$wt # agregar nueva variable
 df
 
 
@@ -191,6 +193,18 @@ df
 df = mutate_all(.tbl=df , .funs = as.character)
 df
 
+#------------------------------#
+## Renombrar variables
+colnames(df)
+colnames(df)[5] = "hp_vt_chr"
+colnames(df)
+
+colnames(df) = toupper(colnames(df))
+
+df = rename(.data = df , mpg_min=MPG)
+df = rename(.data = df , hp_min=HP , wt_4_min=WT_4)
+df = rename(.data = df , `mpg hp`=MPG_HP)
+
 
 #=======================#
 # Operador pipe [%>%]() #
@@ -198,7 +212,7 @@ df
 rm(list=ls())
 cat("[%>%]() es un operador que permite conectar funciones en R. 
      se enfoca en la transformación que se le está haciendo al objeto y no en el objeto, 
-    permitiendo que el código sea más corto y fácil de leer. ")
+     permitiendo que el código sea más corto y fácil de leer. ")
 
 browseURL("https://r4ds.had.co.nz/pipes.html") # Informacion extra 
 
@@ -216,10 +230,7 @@ head(x=df , n=5)
 ## Ejemplo (cont.)
 cat("Con `%>%` no es necesario mencionar el objeto en cada nueva transformación.")
 
-df = as_tibble(mtcars) %>% 
-      .[,c(1,4,6,10)]  %>% 
-      mutate(mpg_hp = mpg/hp , hp_vs = hp/wt)
-
+df = as_tibble(mtcars) %>% .[,c(1,4,6,10)]  %>% mutate(mpg_hp = mpg/hp , hp_vs = hp/wt)
 df
 
 
@@ -243,14 +254,15 @@ db
 ## Seleccionar variables (cont.)
 db %>% select(c(1,3,5))
 
-db %>% select(Petal.Length , Petal.Width , Species)
+df = db %>% select(Petal.Length , Petal.Width , Species)
 
 
 #------------------------------#
 ## Seleccionar variables usando partes del nombre)
 
 #### variables que comienzan con sepal
-db %>% select(starts_with("Sepal"))
+db %>% select(starts_with("Sepal"),Species)
+db %>% select(ends_with("Length"),Species) # finalizan
 
 #### variables que terminan con width
 db %>% select(contains("Width")) 
@@ -277,10 +289,14 @@ db %>% select_all(tolower)
 cat("Tambien se puede selecionar las variables con un vector")
 
 vars = c("Species","Sepal.Length","Petal.Width")
-db %>% select(all_of(vars)) %>% head(n=3)
+db %>% select(all_of(vars))
 
 nums = c(5,2,3)
-db %>% select(all_of(nums)) %>% head(n=3)
+db %>% select(all_of(nums)) 
+
+# drop vars
+nums = c(1,3)
+db %>% select(-all_of(nums)) 
 
 
 #------------------------------#
@@ -309,6 +325,7 @@ browseURL("https://www1.nyc.gov/assets/tlc/downloads/pdf/data_dictionary_trip_re
 ## Remover filas usando condicionales
 cat("La función `subset()` pertenece a una de las librerías base de `R` y
     permite seleccionar todas las filas/observaciones de un conjunto de datos que cumplen una o más condiciones lógicas:")
+subset(x = db , trip_distance > 5)  # Distancia del viaje mayor a 5 millas
 db %>% subset(trip_distance > 5)  # Distancia del viaje mayor a 5 millas
 
 
@@ -318,6 +335,7 @@ db %>% filter(passenger_count > 3) # Más de 3 pasajeros
 #------------------------------#
 ## Remover valores faltantes
 is.na(db$passenger_count) %>% tabyl() # número de observaciones faltantes
+skim(db) # describir datos
 
 cat(" filas con valores faltantes en la variable `passenger_count`")
 db = db %>% drop_na(passenger_count)
@@ -383,12 +401,16 @@ df_2
 
 #------------------------------#
 ## Ejemplo: left_join()
+dev.off()
+grid.raster(readPNG("pics/left_join.png"))
 df = left_join(x=df_1,y=df_2,by=c("hogar","visita"))
 df
 
 
 #------------------------------#
 ## Ejemplo: right_join()
+dev.off()
+grid.raster(readPNG("pics/right_join.png"))
 df = right_join(x=df_1,y=df_2,by=c("hogar","visita"))
 df
 
@@ -415,10 +437,12 @@ cat("Los datos se duplican! Precaucion,
     los datos se duplicaran de lo contrario")
 
 #### Ejemplo de id unicos
-df_1[,c("visita")] %>% duplicated() %>% table()
+df_1$visita %>% duplicated() %>% table()
  
 df_1[,c("hogar","visita")] %>% duplicated() %>% table()
  
+intersect(colnames(df_1),colnames(df_2))
+
 #=============================#
 # Pivotear conjuntos de datos #
 #=============================#
@@ -438,14 +462,15 @@ fish_wide = fish_encounters %>% pivot_wider(names_from = station, values_from = 
 fish_wide
 
 
-rent_wide = us_rent_income %>% pivot_wider(names_from = variable, values_from = c(estimate, moe))
+rent_wide = us_rent_income %>% 
+            pivot_wider(names_from = variable, values_from = c(estimate, moe))
 
 rent_wide
 
 #------------------------------#
 ## pivot_longe
 cat("aumentamos la cantidad de columnas, disminuimos la cantidad de filas")
-fish_long = fish_wide %>% pivot_longer(cols = c(2:12), names_to = "seen")
+fish_long = fish_wide %>% pivot_longer(cols = c(2:12), names_to = "station" , values_to = "dummy")
 
 fish_long
 
