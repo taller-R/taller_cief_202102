@@ -30,7 +30,7 @@ Antes de replicar las clases debe instalar y configurar R y Git en su equipo. Ve
   
   + Dataframes y listas
 
-* ***Clase-03:*** Data tidying (librería ``tidyverse``) [[Ver presentación](https://lectures-blog.gitlab.io/cief_03/)] - [[Ver vídeo]()]
+* ***Clase-03:*** Data tidying (librería ``tidyverse``) [[Ver presentación](https://lectures-blog.gitlab.io/cief_03/)] - [[Ver vídeo](https://www.youtube.com/watch?v=U2ltwKE-UvY&t=2315s)]
 
   + Importar/exportar
 
