@@ -8,7 +8,8 @@ Sys.setlocale("LC_CTYPE", "en_US.UTF-8") # Encoding UTF-8
 
 # install/load packages
 require(pacman)
-p_load(tidyverse,rio,skimr,data.table,viridis,ggthemes,png,grid)
+p_load(tidyverse,rio,skimr,data.table,viridis,ggthemes,
+       png,grid)
 
 ## Hoy veremos
 
@@ -17,7 +18,6 @@ p_load(tidyverse,rio,skimr,data.table,viridis,ggthemes,png,grid)
 ### ***2.*** group_by() y summarize()
 
 ### ***3.*** Visualizaciones
-
 
 #=====================#
 #1.Importemos la GEIH #
@@ -140,6 +140,26 @@ t_des = desocupados %>% left_join(., p_activa, by = c("p6020", "year")) %>%
 # 3. Visualizaciones #
 #====================#
 
+#----------------------------#
+# gráficos con r base
+browseURL("https://r-coder.com/plot-r/", getOption("browser"))
+
+# Plot graph
+plot(mtcars$hp,mtcars$wt)
+
+# density plot
+density(geih$p6500,na.rm=T)
+plot(density(geih$p6500,na.rm=T))
+
+#histograma
+hist(geih$year)
+
+#----------------------------#
+## ggplot: recursos adicionales (galería de gráficos)
+browseURL("https://www.data-to-viz.com",getOption("browser")) # data to viz
+browseURL("https://www.r-graph-gallery.com/",getOption("browser")) # galería de gráficos de R
+
+#----------------------------#
 cat("ggplot funciona por medio de capas y se usa el signo + para adiccionar un atributo al gráfico")
 ggplot(t_des) 
 
@@ -159,22 +179,23 @@ ggplot(data = t_des, aes(x = unemployment, y = as.factor(year), fill = as.factor
 geom_bar(position="dodge", stat="identity") + coord_flip()
 
 
-#================#
-# ggplot:advance #
-
-cat("para simplificar pondremos este código lo pondremos dentro de una variable de tal manera que cuando llamemos a la variable nos de la gráfica")
-
+#----------------------------#
+# ggplot:advance
+browseURL("cheat_sheet/data-visualization.pdf",getOption("browser")) 
 graph_1 = ggplot(data = t_des, aes(x = unemployment, y = as.factor(year), fill = as.factor(p6020))) + 
                  geom_bar(position="dodge", stat="identity") + coord_flip()
 graph_1
 
 #----------------------------#
 ## scale colour
-cat("se puede definir los colores en uso manual mente un por una scala de color") 
+browseURL("https://ggplot2.tidyverse.org/reference/scale_brewer.html",getOption("browser")) # scale brewer function
+browseURL("https://colorbrewer2.org/#type=qualitative&scheme=Set3&n=9",getOption("browser")) # manual color picker
+browseURL("https://www.r-graph-gallery.com/38-rcolorbrewers-palettes.html",getOption("browser")) # palletas disponibles
+browseURL(url="http://rstudio-pubs-static.s3.amazonaws.com/5312_98fc1aba2d5740dd849a5ab797cc2c8d.html" , browser = getOption("browser")) # + palletas disponibles
+display.brewer.all() # palletas disponibles
 
 #### scale_fill_manual
 graph_1 + scale_fill_manual(values  = c("blue", "green"))
-
 
 #### scale_fill_brewer
 graph_2 = graph_1 + scale_fill_brewer(palette = "Blues") # reescribimos variable para simplificar
@@ -183,7 +204,8 @@ graph_2
 
 #----------------------------#
 ## agregar temas 
-cat("hay temas predeterminados que se pueden usar")
+browseURL("https://mran.microsoft.com/snapshot/2017-02-04/web/packages/ggthemes/vignettes/ggthemes.html",getOption("browser")) # ggtheme package
+browseURL("https://ggplot2.tidyverse.org/reference/theme.html",getOption("browser")) # ggtheme package
 
 graph_2 + theme_solarized(light = FALSE) # Tema solarized
 graph_3 = graph_2 + theme_few() # Tema few
