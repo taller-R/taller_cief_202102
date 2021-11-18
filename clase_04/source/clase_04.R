@@ -8,8 +8,7 @@ Sys.setlocale("LC_CTYPE", "en_US.UTF-8") # Encoding UTF-8
 
 # install/load packages
 require(pacman)
-p_load(tidyverse,rio,skimr,data.table,viridis,ggthemes,
-       png,grid)
+p_load(tidyverse,rio,skimr,data.table,viridis,ggthemes)
 
 ## Hoy veremos
 
@@ -61,19 +60,23 @@ source("clase_04/source/clean_data.R") # ejecutar un código auxiliar
 ## función rbindlist()
 cat("rbind permite unir los elementos de una listas (agregar observaciones)")
 
-cg_bind = rbindlist(l=cg, use.names = TRUE, fill = TRUE)
+cg_bind = rbindlist(l=cg, use.names = T, fill = T) %>% as_tibble()
 
-ocu_bind = rbindlist(l=ocu,use.names = TRUE,fill = TRUE)
+ocu_bind = rbindlist(l=ocu,use.names = TRUE,fill = T) %>% as_tibble()
 
-deso_bind = rbindlist(l=deso,use.names = TRUE,fill = TRUE)
+deso_bind = rbindlist(l=deso,use.names = TRUE,fill = T) %>% as_tibble()
 
-inac_bind = rbindlist(l=inac,use.names = TRUE,fill = TRUE)
+inac_bind = rbindlist(l=inac,use.names = TRUE,fill = T) %>% as_tibble()
 
-ft_bind = rbindlist(l=ft,use.names = TRUE,fill=TRUE)
+ft_bind = rbindlist(l=ft,use.names = TRUE,fill=TRUE) %>% as_tibble() 
  
 #--------------------------#
 #### gaih completa
 cat("unir bases de datos (agregar variables)")
+
+intersect(colnames(cg_bind),colnames(inac_bind))
+nrow(cg_bind)
+distinct_all(cg_bind[,c("secuencia_p","directorio","orden")]) %>% nrow()
 
 geih = left_join(x = cg_bind, y = ft_bind, by = c("secuencia_p","directorio","orden")) %>% 
        left_join(x = ., y = inac_bind, by = c("secuencia_p","directorio","orden")) %>% 
@@ -105,8 +108,10 @@ geih = geih %>%
 ## summarise 
 
 #### Media
+mean(geih$p6500)
 mean(geih$p6500, na.rm = T)
-geih %>% summarise(media = mean(p6500, na.rm = TRUE)) 
+weighted.mean(x = geih$p6500, w = geih$fex_c_2011, na.rm = T)
+geih %>% summarise(mean = mean(p6500, na.rm = TRUE) , max= max(p6500, na.rm = TRUE)) 
 
 #### Mediana
 median(geih$p6500, na.rm = TRUE)
@@ -114,7 +119,9 @@ geih %>% summarise(media = mean(p6500, na.rm = T) ,
                    mediana = median(p6500, na.rm = T)) 
 
 #### frecuencia
-table(geih$p6020) 
+janitor::tabyl(geih$esc)
+table(geih$esc) 
+table(geih$esc,geih$p6020) 
 geih %>% summarise(total = table(p6020)) 
 
 #### Quartiles
@@ -124,9 +131,14 @@ geih %>% summarise(quartiles = quantile(p6500, na.rm = TRUE))
 
 #-------------------------#
 # group_by() + summarise() 
-desocupados = geih  %>% group_by(p6020, year) %>% subset(deso==1) %>% summarise(total_desempleados = sum(fex_c_2011))
+geih %>% group_by(p6020,year) %>%
+summarise(wage = weighted.mean(x = p6500 , w = fex_c_2011 , na.rm = T))
 
-p_activa = geih  %>% group_by(year, p6020) %>% subset(deso == 1 | ocu == 1) %>% summarise(total_activa = sum(fex_c_2011))
+desocupados = geih  %>% 
+              group_by(p6020, year) %>% subset(deso==1) %>% summarise(total_desempleados = sum(fex_c_2011))
+
+p_activa = geih  %>% group_by(year, p6020 ) %>% 
+           subset(deso == 1 | ocu == 1) %>% summarise(total_activa = sum(fex_c_2011))
 
 #-------------------------------------#
 # group_by() + mutate() + summarize 
@@ -207,8 +219,10 @@ graph_2
 browseURL("https://mran.microsoft.com/snapshot/2017-02-04/web/packages/ggthemes/vignettes/ggthemes.html",getOption("browser")) # ggtheme package
 browseURL("https://ggplot2.tidyverse.org/reference/theme.html",getOption("browser")) # ggtheme package
 
+graph_2 + theme_light()
 graph_2 + theme_solarized(light = FALSE) # Tema solarized
 graph_3 = graph_2 + theme_few() # Tema few
+graph_3
 
 #----------------------------#
 ## precaucion
@@ -218,6 +232,7 @@ graph_2 + theme_pander() + scale_fill_pander() # Tema few
 
 #----------------------------#
 ## Labels
+graph_3
 graph_4 = graph_3 + labs(title = "Tasa de Desempleo por Sexo", 
                          subtitle = "2019/2020 (junio)",
                          caption = "Fuente: GEIH, calculo de autores",
@@ -225,5 +240,9 @@ graph_4 = graph_3 + labs(title = "Tasa de Desempleo por Sexo",
                          x = "Tasa de desempleo %", 
                          fill = "Sexo")
 graph_4
+
+
+graph_4 + scale_x_discrete(expand = c(0,0))
+
 
 

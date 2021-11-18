@@ -26,8 +26,10 @@ ft[[2]]$fuerza=1
 ## renombrar variables
 
 #### Caracteristicas Generales
-cg[[1]] = cg[[1]] %>% select_all(tolower) %>% select("secuencia_p", "directorio","orden","esc","dpto","year","fex_c_2011","p6020")
-cg[[2]] = cg[[2]] %>% select_all(tolower) %>% select("secuencia_p", "directorio","orden","esc","dpto","year","fex_c_2011","p6020")
+cg[[1]] = cg[[1]] %>% select_all(tolower) %>% 
+          select("secuencia_p", "directorio","orden","esc","dpto","year","fex_c_2011","p6020","p6040")
+cg[[2]] = cg[[2]] %>% select_all(tolower) %>% 
+          select("secuencia_p", "directorio","orden","esc","dpto","year","fex_c_2011","p6020","p6040")
 
 #### Ocupados
 ocu[[1]] = ocu[[1]] %>% select_all(tolower) %>% select("secuencia_p", "directorio","orden","ocu","p6500")
