@@ -44,7 +44,13 @@ Antes de replicar las clases debe instalar y configurar R y Git en su equipo. Ve
 
   + Pivotear conjuntos de datos
 
-* ***Clase-04:*** Visualización de información (librería ggplot2)
+* ***Clase-04:*** Visualización de información (librería ggplot2) [[Ver presentación](https://lectures-blog.gitlab.io/cief_04/)] - [[Ver vídeo]()]
+
+  + Aplicación GEIH: Importar, exportar 
+  
+  + `group_by()` y `summarize()`
+  
+  + Visualizaciones
 
 * ***Clase-05:*** Loops y funciones
   

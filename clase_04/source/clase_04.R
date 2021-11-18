@@ -227,8 +227,3 @@ graph_4 = graph_3 + labs(title = "Tasa de Desempleo por Sexo",
 graph_4
 
 
-
-
-
-
-
