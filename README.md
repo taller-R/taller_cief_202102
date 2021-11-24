@@ -8,7 +8,7 @@ Antes de replicar las clases debe instalar y configurar R y Git en su equipo. Ve
 
 ## Acerca de las clases
 
-* ***Clase-01:*** Introducción a R [[Ver presentación](https://lectures-blog.gitlab.io/cief_01/)] - [[Ver vídeo](https://eafit-my.sharepoint.com/:v:/g/personal/cplealv_eafit_edu_co/EZ39c9WuHxFBrzMSPHxz2n8BVCkIHkooZODtmlUcrzIYOQ)]
+* ***Clase-01:*** Introducción a R [[Ver presentación](https://lectures-blog.gitlab.io/cief_01/)] - [[Ver vídeo](https://www.youtube.com/watch?v=SZu4b1TagTk)]
   
   + ¿Usar R?
   
@@ -20,7 +20,7 @@ Antes de replicar las clases debe instalar y configurar R y Git en su equipo. Ve
   
   + Directorio de trabajo
 
-* ***Clase-02:*** Estructuras de datos en R [[Ver presentación](https://lectures-blog.gitlab.io/cief_02/)] - [[Ver vídeo](https://eafit.sharepoint.com/sites/CursoR-CIEF/Documentos%20compartidos/General/Recordings/Clase%2002-20211028_080849-Grabaci%C3%B3n%20de%20la%20reuni%C3%B3n.mp4?web=1)]
+* ***Clase-02:*** Estructuras de datos en R [[Ver presentación](https://lectures-blog.gitlab.io/cief_02/)] - [[Ver vídeo](https://www.youtube.com/watch?v=ar62EZlTIhE)]
 
   + R + Git
   
@@ -44,7 +44,13 @@ Antes de replicar las clases debe instalar y configurar R y Git en su equipo. Ve
 
   + Pivotear conjuntos de datos
 
-* ***Clase-04:*** Visualización de información (librería ggplot2)
+* ***Clase-04:*** Visualización de información (librería ggplot2) [[Ver presentación](https://lectures-blog.gitlab.io/cief_04/)] - [[Ver vídeo](https://www.youtube.com/watch?v=LbxJZ-wCFY8&t=5s)]
+
+  + Aplicación GEIH: Importar, exportar 
+  
+  + `group_by()` y `summarize()`
+  
+  + Visualizaciones
 
 * ***Clase-05:*** Loops y funciones
   
