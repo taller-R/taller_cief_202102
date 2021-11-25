@@ -161,7 +161,6 @@ return(c)
 num_2(x = 4)
 num_2(x = "A")
 
-
 # incluir controles de flujo
 num_2 = function(numero){
   
@@ -179,7 +178,6 @@ num_2 = function(numero){
 num_2(numero = 10)
 num_2(numero = "hola")
 num_2(numero = "10")
-
 
 #======================#
 #=== Familia apply ====#
@@ -234,24 +232,27 @@ list_chip = import_list(file = list.files("clase_05/input/chip",full.names=T, re
 names(list_chip) 
 
 #----------------------#
-## Funcion para extraer datos
-f_extrac = function(lista,tipo_rubro){
+## Funcion para extraer
+list_chip
+f_extrac = function(n,lista,tipo_rubro){
   
-           n = lapply(lista, function(y){ # lapply para repetir la funcion en cada elmento
-               fecha = y[2,1] # extraer la fecha
-               lugar = colnames(y)[1] # extraer el lugar
-                  
-               y = y[grep(paste(tipo_rubro, collapse="|"), y[,2]),c(2,4:8)] %>% 
-                   mutate(fecha = fecha, lugar = lugar) # extraer datos numericos
-                  
-              return(y)
-              }) %>% rbindlist(use.names = TRUE) 
+           # crear df
+           df = data.frame(valor=NA,cod_dane=NA,periodo=NA)  
+           lista_n = lista[[n]] 
           
-          colnames(n) = c("nombre", "presupuesto_inicial","presupuesto_definitivo","compromisos","total_obligaciones","PAGOS", "fecha", "lugar") 
-          n 
+           # extraer codigo dane
+           df$cod_dane = colnames(lista_n)[1]
+          
+           # extraer periodo
+           df$periodo = lista_n[2,1]
+          
+           # extraer el valor
+           colnames(lista_n) = lista_n[7,]
+           df$valor = lista_n %>% subset(NOMBRE==tipo_rubro) %>% select(`PAGOS(Pesos)`)
+          
+return(df)  
 }
-
-resultados = f_extrac(list_chip, tipo_rubro = c("TOTAL INVERSIÓN","DEPORTE Y RECREACIÓN"))
+f_extrac(n = 10 , lista = list_chip , tipo_rubro = "SALUD")
 
 #======================#
 #=== Ejemplo: GEIH ====#
