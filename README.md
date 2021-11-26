@@ -52,7 +52,7 @@ Antes de replicar las clases debe instalar y configurar R y Git en su equipo. Ve
   
   + Visualizaciones
 
-* ***Clase-05:*** Loops y funciones
+* ***Clase-05:*** Loops y funciones [[Ver presentación](https://lectures-blog.gitlab.io/cief_05/)] - [[Ver vídeo](https://www.youtube.com/watch?v=So7097qIAqI)]
   
   + Bucles 
   
