@@ -60,18 +60,22 @@ Antes de replicar las clases debe instalar y configurar R y Git en su equipo. Ve
   
   + Familia apply
 
-* ***Clase-06:*** Datos espaciales parte 1
+* ***Clase-06:*** Introducción a datos espaciales [[Ver presentación](https://lectures-blog.gitlab.io/cief_06/)] - [[Ver vídeo](https://www.youtube.com/watch?v=So7097qIAqI)]
 
-   + Introducción a GIS
+   + Datos geográficos
+
+   + Sistemas de Referencia de Coordenadas - CRS
+
+   + R-espacial
    
-   + Librería ``sf``
+   + Making maps en R
 
-* ***Clase-06:*** Datos espaciales parte 2
+* ***Clase-06:*** Manipular `simple feautres`
 
    + Operaciones geométricas
    
-   + Librería ``osmdata``, ``geobr``, ``spData``
-   
+   + Extraer datos espaciales (``osmdata``, ``geobr``, ``spData``)
+      
    + Aplicación: Precio de viviendas
 
 * ***Clase-08:*** Datos espaciales parte 3
